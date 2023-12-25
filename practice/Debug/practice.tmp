@@ -1,0 +1,41 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328pdef.inc</FILE>
+  <FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\delayMacro.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\Debug\practice.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>practice.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>practice.map</FILE>
+  <FILE>practice.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <variableFan><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>99</LINE></variableFan>
+  <loop><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>20</LINE></loop>
+  <ldrRead><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>75</LINE></ldrRead>
+  <led1On><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>43</LINE></led1On>
+  <led2On><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>51</LINE></led2On>
+  <led3On><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>59</LINE></led3On>
+  <fan2On><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>67</LINE></fan2On>
+  <led1Off><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>47</LINE></led1Off>
+  <led2Off><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>55</LINE></led2Off>
+  <led3Off><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>63</LINE></led3Off>
+  <fan2Off><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>71</LINE></fan2Off>
+  <runVariableFan><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>112</LINE></runVariableFan>
+  <wait><FILE>A:\Programming\Assembly\Microchip Studio Programs\practice\practice\main.asm</FILE><LINE>88</LINE></wait>
+ </LABELS>
+</ASSEMBLER_INFO>
