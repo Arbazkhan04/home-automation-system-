@@ -1,5 +1,6 @@
 .include "m328pdef.inc"
 .include "delayMacro.inc"
+.include "UART_Macros.inc"
 	.cseg
 
 	.def A = r16
@@ -16,29 +17,17 @@
 		sbi ddrb, PD7	; fan2 normal
 
 		call variableFan
+		call ldrReadInitialize
 
 	loop:
 
-		call ldrRead
-		delay 1000
-
-		call led1On
-		call led2On
-		call led3On
-		call fan2On
-
-		delay 1000
-
-		call led1Off
-		call led2Off
-		call led3Off
-		call fan2Off
-
-		delay 1000
-
-		call runVariableFan
+		
+		call ldrTakeReading
 
 	rjmp loop
+
+	day_string: .db "Day Time ",0x0D,0x0A,0
+	night_string: .db "Night Time ",0x0D,0x0A,0
 
 	led1On:
 		sbi portd, 3
@@ -72,7 +61,7 @@
 		sbi portd, 7
 		ret
 
-	ldrRead:
+	ldrReadInitialize:
 
 		; ADC Configuration
 		LDI A,0b11000111 ; [ADEN ADSC ADATE ADIF ADIE ADIE ADPS2 ADPS1 ADPS0]
@@ -81,20 +70,45 @@
 		STS ADMUX,A ; Select ADC0 (PC0) pin
 		SBI PORTC,PC0 ; Enable Pull-up Resistor
 
-		LDS A,ADCSRA ; Start Analog to Digital Conversion
-		ORI A,(1<<ADSC)
-		STS ADCSRA,A
-
-		wait:
-			LDS A,ADCSRA ; wait for conversion to complete
-			sbrc A,ADSC
-			rjmp wait
-			LDS A,ADCL ; Must Read ADCL before ADCH
-			LDS AH,ADCH
-			;value is in AH , how to send it to mqtt?
-			
+		Serial_begin ; initilize UART serial communication
 
 		ret
+
+	ldrTakeReading:
+
+			LDS A,ADCSRA ; Start Analog to Digital Conversion
+			ORI A,(1<<ADSC)
+			STS ADCSRA,A
+
+			wait:
+				LDS A,ADCSRA ; wait for conversion to complete
+				sbrc A,ADSC
+			rjmp wait
+
+			LDS A,ADCL ; Must Read ADCL before ADCH
+			LDS AH,ADCH
+			delay 100 ; delay 100ms
+			Serial_writeReg_ASCII AH ; sending the received value to UART
+			Serial_writeChar ':' ; just for formating (e.g. 180: Day Time or 220: Night Time)
+			Serial_writeChar ' '
+			cpi AH,200 ; compare LDR reading with our desired threshold
+			call LED_On ; jump if same or higher (AH >= 200)
+			call led1Off ; LED OFF
+			; writes the string "Day Time" to the UART
+			LDI ZL, LOW (2 * day_string)
+			LDI ZH, HIGH (2 * day_string)
+			Serial_writeStr
+			delay 500
+
+			ret
+
+	LED_On:
+		call led1On ; LED ON
+		; writes the string "Night Time" to the UART
+		LDI ZL, LOW (2 * night_string)
+		LDI ZH, HIGH (2 * night_string)
+		Serial_writeStr
+		delay 500
 
 	variableFan:
 
