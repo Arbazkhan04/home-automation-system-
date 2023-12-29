@@ -67,10 +67,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="16bit_reg_read_write_Macro.inc">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="delay.inc">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="delayMacro.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="div_Macro.inc">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.asm">
